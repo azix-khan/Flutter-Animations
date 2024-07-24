@@ -15,8 +15,9 @@ class SandboxState extends State<Sandbox> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedContainer(
+    return SafeArea(
+      child: Scaffold(
+        body: AnimatedContainer(
           duration: const Duration(seconds: 1),
           margin: EdgeInsets.all(_margin),
           width: _width,
@@ -25,29 +26,47 @@ class SandboxState extends State<Sandbox> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               TextButton(
-                child: const Text('animate margin'),
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                ),
                 onPressed: () => setState(() => _margin = 50),
+                child: const Text('animate margin'),
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                ),
                 child: const Text('animate color'),
                 onPressed: () => setState(() => _color = Colors.purple),
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                ),
                 child: const Text('animate width'),
                 onPressed: () => setState(() => _width = 400),
               ),
               TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                ),
                 child: const Text('animate opacity'),
                 onPressed: () => setState(() => _opacity = 0),
               ),
               AnimatedOpacity(
                 duration: const Duration(seconds: 2),
                 opacity: _opacity,
-                child: const Text('hide me',
-                    style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  'hide me',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/screens/home.dart';
 import 'package:flutter_animations/screens/sandbox.dart';
 
 void main() {
