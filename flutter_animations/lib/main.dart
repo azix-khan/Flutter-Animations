@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animations/screens/sandbox.dart';
+import 'package:flutter_animations/screens/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Animations Trips',
-      home: Sandbox(),
+      home: Home(),
     );
   }
 }
