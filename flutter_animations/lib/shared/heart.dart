@@ -12,6 +12,7 @@ class HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Color?> _colorAnimation;
   late Animation<double> _sizeAnimation;
+  late Animation<double> _curve;
   Color? beginColor = Colors.grey[400];
   Color? endColor = Colors.red;
 
@@ -24,10 +25,15 @@ class HeartState extends State<Heart> with SingleTickerProviderStateMixin {
       vsync: this,
     );
 
+    _curve = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.slowMiddle,
+    );
+
     _colorAnimation = ColorTween(
       begin: beginColor,
       end: endColor,
-    ).animate(_animationController);
+    ).animate(_curve);
 
     // for size animation
     _sizeAnimation = TweenSequence(
