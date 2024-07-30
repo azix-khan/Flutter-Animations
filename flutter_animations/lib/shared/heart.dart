@@ -11,6 +11,7 @@ class HeartState extends State<Heart> with SingleTickerProviderStateMixin {
   bool isFav = false;
   late AnimationController _animationController;
   late Animation<Color?> _colorAnimation;
+  late Animation<double> _sizeAnimation;
   Color? beginColor = Colors.grey[400];
   Color? endColor = Colors.red;
 
@@ -26,6 +27,20 @@ class HeartState extends State<Heart> with SingleTickerProviderStateMixin {
     _colorAnimation = ColorTween(
       begin: beginColor,
       end: endColor,
+    ).animate(_animationController);
+
+    // for size animation
+    _sizeAnimation = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 30, end: 50),
+          weight: 50,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 50, end: 30),
+          weight: 50,
+        ),
+      ],
     ).animate(_animationController);
 
     _animationController.addStatusListener((status) {
@@ -58,7 +73,7 @@ class HeartState extends State<Heart> with SingleTickerProviderStateMixin {
           icon: Icon(
             Icons.favorite,
             color: _colorAnimation.value,
-            size: 30,
+            size: _sizeAnimation.value,
           ),
           onPressed: () {
             isFav
