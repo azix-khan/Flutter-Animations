@@ -21,7 +21,7 @@ class HomeState extends State<Home> {
               fit: BoxFit.fitWidth,
               alignment: Alignment.topLeft),
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 30),

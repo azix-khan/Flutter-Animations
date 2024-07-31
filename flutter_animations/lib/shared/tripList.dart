@@ -10,8 +10,8 @@ class TripList extends StatefulWidget {
 }
 
 class TripListState extends State<TripList> {
-  final List<Widget> _tripTiles = [];
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
+  final List<Widget> _tripTiles = [];
 
   @override
   void initState() {
@@ -19,7 +19,6 @@ class TripListState extends State<TripList> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _addTrips();
     });
-    _addTrips();
   }
 
   void _addTrips() {
@@ -32,9 +31,14 @@ class TripListState extends State<TripList> {
       Trip(title: 'Space Blast', price: '600', nights: '4', img: 'space.png'),
     ];
 
+    Future ft = Future(() {});
     trips.forEach((Trip trip) {
-      _tripTiles.add(_buildTile(trip));
-      _listKey.currentState?.insertItem(_tripTiles.length - 1);
+      ft = ft.then((data) {
+        return Future.delayed(const Duration(milliseconds: 100), () {
+          _tripTiles.add(_buildTile(trip));
+          _listKey.currentState?.insertItem(_tripTiles.length - 1);
+        });
+      });
     });
   }
 
@@ -68,7 +72,7 @@ class TripListState extends State<TripList> {
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
         child: Hero(
-          tag: 'location-img ${trip.img}',
+          tag: 'location-img-${trip.img}',
           child: Image.asset(
             'images/${trip.img}',
             height: 50.0,
